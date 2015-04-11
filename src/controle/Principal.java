@@ -11,10 +11,16 @@ package controle;
  */
 public class Principal {
     public static void main(String[] args) {
+        boolean up = true;
         System.out.println("Teste java");
         for (int i = 0; i < 10; i++) {
             System.out.println("Execução " + i);
             System.out.println("\ngit config --global --list");
+            if(up){
+                System.out.println("Subiu o projeto");
+            }else{
+                System.out.println("Verificar o que houve");
+            }
         }
     }
 }
