@@ -13,7 +13,8 @@ public class Principal {
     public static void main(String[] args) {
         System.out.println("Teste java");
         for (int i = 0; i < 10; i++) {
-            System.out.println("git config --global --list");
+            System.out.println("Execução " + i);
+            System.out.println("\ngit config --global --list");
         }
     }
 }
