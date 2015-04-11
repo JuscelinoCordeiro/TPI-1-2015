@@ -20,6 +20,7 @@ public class Principal {
                 System.out.println("Subiu o projeto");
             }else{
                 System.out.println("Verificar o que houve");
+                System.out.println("ERRADO");
             }
         }
     }
