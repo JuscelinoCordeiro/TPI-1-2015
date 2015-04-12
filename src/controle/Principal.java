@@ -31,25 +31,43 @@ public class Principal {
         System.out.println("\nConteudo do arquivo: \n");
         
         try {
-            //DEFININDO ARQUIVO DE ENTRADA
+            //CONFIG PARA ARQUIVO DE ENTRADA
             FileReader arq1 = new FileReader(arquivoEntrada);
             BufferedReader lerArq = new BufferedReader(arq1);
             
-            //DEFININDO ARQUIVO DE SAIDA
+            //CONFIG PARA ARQUIVO DE SAIDA
             FileWriter arq2 = new FileWriter(arquivoSaida);
             PrintWriter gravarArq = new PrintWriter(arq2);
 
             String linha = lerArq.readLine(); // lê a primeira linha 
             // a variável "linha" recebe o valor "null" quando o processo 
             // de repetição atingir o final do arquivo texto 
-            gravarArq.printf("ID TC TP P\n");
             
-            while (linha != null) {                                
-                gravarArq.println(linha);
+//            gravarArq.printf("ID TC TP P\n");
+            String todaLinha = "";
+            int cont = linha.length();
+//            System.out.println(cont);
+            for(int i = 0; i < linha.length(); i++){
+                char c = linha.charAt(i);
                 
-                System.out.printf("%s\n", linha);
-                linha = lerArq.readLine(); // lê da segunda até a última linha
+                if (c == ' ') {
+                    System.out.println("É um espaço");
+                }else{
+                    todaLinha += Character.toString(c);
+                    System.out.println(c);
+                }
             }
+            
+            System.out.println(todaLinha);
+            
+            
+            
+//            while (linha != null) {                                
+//                gravarArq.println(linha);
+//                
+//                System.out.printf("%s\n", linha);
+//                linha = lerArq.readLine(); // lê da segunda até a última linha
+//            }
 
             arq2.close();
             arq1.close();
