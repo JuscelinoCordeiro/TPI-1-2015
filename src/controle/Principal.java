@@ -10,7 +10,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.List;
+import model.Processo;
+import sun.misc.Queue;
+import view.DetalharProcesso;
 
 /**
  *
@@ -20,10 +24,10 @@ public class Principal {
 
     public static void main(String[] args) {
         System.out.println("TESTE DE EXECUÇÃO");
-        Scanner ler = new Scanner(System.in);
+ 
+        List <Processo> filaDeProcessos = new LinkedList<Processo>();
+        Processo p1 = new Processo();
 
-//        System.out.println("Informe o nome do arquivo: \n");
-//        String nome = ler.nextLine();
         String arquivoEntrada = "/home/apolo/Dropbox/UFF-SI/TPI-1/Escalonador de Tarefas/src/arquivos/entrada.txt";
         String arquivoSaida = "/home/apolo/Dropbox/UFF-SI/TPI-1/Escalonador de Tarefas/src/arquivos/saida.txt";
 
@@ -45,31 +49,50 @@ public class Principal {
 //            gravarArq.printf("ID TC TP P\n");
             String informacao = ""; //string para armazenar a informação lida da linha
             char c = ' ';
-//            int cont = linhaLida.length();
+            int i = 0; //indice na linha
+            int j = 0; //indice de atributo do processo para uso no switch
 
-//            System.out.println(cont);
-            int i = 0;
-            while (i < linhaLida.length()) {
-                System.out.println("i = " + i);
+            while (i <= linhaLida.length()) {
                 if (i == 0) { //primeiro cacacter da linha
                     c = linhaLida.charAt(i);
-                    informacao += Character.toString(c);
-                    System.out.println("informação = " + informacao);
+                    informacao = Character.toString(c);
                 } else {
-                    c = linhaLida.charAt(i);
-                    if (c != ' ') {
+                    if (i < linhaLida.length()) {
                         c = linhaLida.charAt(i);
-                        informacao += Character.toString(c);
-                        System.out.println("informação = " + informacao);
+                    }
+
+                    if (c == ' ' || i == linhaLida.length()) {
+                        System.out.println("\ni =" + i);
+                        ++j;
+                        System.out.println("j = " + j);
+                        System.out.println("informação " + informacao);
+                        switch (j) {
+                            case 1:
+                                p1.setId(Integer.parseInt(informacao));
+                                break;
+                            case 2:
+                                p1.setTmpChegada(Integer.parseInt(informacao));
+                                break;
+                            case 3:
+                                p1.setDuracao(Integer.parseInt(informacao));
+                                break;
+                            case 4:
+                                p1.setPrioridade(Integer.parseInt(informacao));
+                                break;
+                            default:
+                                throw new AssertionError();
+                        }
+                        informacao = "";
+                        
                     } else {
-                        System.out.println("Encontrou espaço.");
-                        System.out.println("informação = " + informacao);
-                        informacao = "vazio";
+                        informacao += Character.toString(c);                   
                     }
                 }
                 i++;
             }
-
+            filaDeProcessos.add(p1);
+            System.out.println("tamanho da fila: " + filaDeProcessos.size());
+            DetalharProcesso.detalhes(filaDeProcessos.get(0));
             /*
              for (int i = 0; i < linhaLida.length(); i++) {
              c = linhaLida.charAt(i);
@@ -82,8 +105,6 @@ public class Principal {
              }
              }
              */
-            
-            
 //            while (linha != null) {                                
 //                gravarArq.println(linha);
 //                
