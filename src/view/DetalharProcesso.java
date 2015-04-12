@@ -12,11 +12,11 @@ import model.Processo;
  */
 public class DetalharProcesso {
     public static void detalhes(Processo p){
-        System.out.println("Dados do processo: \n");
+        System.out.println("\nDados do processo: \n");
         System.out.println("ID: " + p.getId());
-        System.out.println("ID: " + p.getTmpChegada());
-        System.out.println("ID: " + p.getDuracao());
-        System.out.println("ID: " + p.getPrioridade());        
+        System.out.println("Tempo de chegada: " + p.getTmpChegada());
+        System.out.println("Duração: " + p.getDuracao());
+        System.out.println("Prioridade: " + p.getPrioridade());        
     }
     
 }
