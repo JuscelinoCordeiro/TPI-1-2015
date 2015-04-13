@@ -1,0 +1,25 @@
+Dados do processo: 1
+ID TC TP P
+1 0 3 1
+ ================================
+
+Dados do processo: 2
+ID TC TP P
+2 0 2 2
+ ================================
+
+Dados do processo: 3
+ID TC TP P
+3 1 2 1
+ ================================
+
+Dados do processo: 4
+ID TC TP P
+4 7 10 2
+ ================================
+
+Dados do processo: 5
+ID TC TP P
+5 17 123 20
+ ================================
+

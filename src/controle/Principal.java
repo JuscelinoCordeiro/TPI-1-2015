@@ -34,11 +34,11 @@ public class Principal {
         System.out.println("\nConteudo do arquivo: \n");
 
         try {
-            //CONFIG PARA ARQUIVO DE ENTRADA
+            //CONFIG / ABERTURA DO ARQUIVO DE ENTRADA
             FileReader arq1 = new FileReader(arquivoEntrada);
             BufferedReader lerArq = new BufferedReader(arq1);
 
-            //CONFIG PARA ARQUIVO DE SAIDA
+            //CONFIG / ABERTURA DO ARQUIVO DE SAIDA
             FileWriter arq2 = new FileWriter(arquivoSaida);
             PrintWriter gravarArq = new PrintWriter(arq2);
 
@@ -147,8 +147,7 @@ public class Principal {
                 filaDeProcessos.add(p2);
                 linhaLida = lerArq.readLine();
             }
-            arq2.close();
-            arq1.close();
+            
 
             System.out.println("tamanho da fila = " + filaDeProcessos.size());
 
@@ -156,7 +155,7 @@ public class Principal {
                 System.out.println("i = " + i);
                 DetalharProcesso.detalhes(filaDeProcessos.get(i));
 
-                gravarArq.println("Dados do processo: " + i);
+                gravarArq.println("Dados do processo: " + (i +1));
                 gravarArq.printf("ID TC TP P\n");
                 gravarArq.print(filaDeProcessos.get(i).getId());
                 gravarArq.print(" " + filaDeProcessos.get(i).getTmpChegada());
@@ -164,6 +163,9 @@ public class Principal {
                 gravarArq.print(" " + filaDeProcessos.get(i).getPrioridade());
                 gravarArq.println("\n ================================\n");
             }
+            
+            arq2.close();
+            arq1.close();
 
         } catch (IOException e) {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
