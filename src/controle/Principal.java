@@ -48,54 +48,6 @@ public class Principal {
 
 //            gravarArq.printf("ID TC TP P\n");
             String informacao = ""; //string para armazenar a informação lida da linha
-//            char c = ' ';
-//            int i = 0; //indice na linha
-//            int j = 0; //indice de atributo do processo para uso no switch
-//
-//            while (i <= linhaLida.length()) {
-//                if (i == 0) { //primeiro cacacter da linha
-//                    c = linhaLida.charAt(i);
-//                    informacao = Character.toString(c);
-//                } else {
-//                    if (i < linhaLida.length()) {
-//                        c = linhaLida.charAt(i);
-//                    }
-//
-//                    if (c == ' ' || i == linhaLida.length()) {
-//                        System.out.println("\ni =" + i);
-//                        ++j;
-//                        System.out.println("j = " + j);
-//                        System.out.println("informação " + informacao);
-//                        switch (j) {
-//                            case 1:
-//                                p1.setId(Integer.parseInt(informacao));
-//                                break;
-//                            case 2:
-//                                p1.setTmpChegada(Integer.parseInt(informacao));
-//                                break;
-//                            case 3:
-//                                p1.setDuracao(Integer.parseInt(informacao));
-//                                break;
-//                            case 4:
-//                                p1.setPrioridade(Integer.parseInt(informacao));
-//                                break;
-//                            default:
-//                                throw new AssertionError();
-//                        }
-//                        informacao = "";
-//
-//                    } else {
-//                        informacao += Character.toString(c);
-//                    }
-//                }
-//                i++;
-//            }
-//            filaDeProcessos.add(p1);
-////            System.out.println("tamanho da fila: " + filaDeProcessos.size());
-//            DetalharProcesso.detalhes(filaDeProcessos.get(0));
-
-//Processo p2 = new Processo();
-//            linhaLida = lerArq.readLine();
             while (linhaLida != null) {
                 Processo p2 = new Processo();
                 char z = ' ';
