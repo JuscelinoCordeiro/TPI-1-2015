@@ -20,6 +20,11 @@ ID TC TP P
 
 Dados do processo: 5
 ID TC TP P
-5 17 123 20
+5 17 150 20
+ ================================
+
+Dados do processo: 6
+ID TC TP P
+11 35 10 4
  ================================
 
