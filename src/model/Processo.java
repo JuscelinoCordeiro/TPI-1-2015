@@ -5,15 +5,24 @@
  */
 package model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author apolo
  */
-public class Processo {
+public class Processo implements Comparable<Processo> {
+
     private int id;
     private int tmpChegada;
     private int duracao;
     private int prioridade;
+    private List<Interrupcao> interrupcoes;
+
+    public Processo() {
+        this.interrupcoes = new LinkedList<>();
+    }
 
     public int getId() {
         return id;
@@ -46,6 +55,17 @@ public class Processo {
     public void setPrioridade(int prioridade) {
         this.prioridade = prioridade;
     }
-    
-    
+
+    @Override
+    public int compareTo(Processo outroProcesso) {
+        //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.tmpChegada == outroProcesso.getTmpChegada() && this.prioridade < outroProcesso.prioridade) {
+            return -1;
+        }
+        if (this.tmpChegada == outroProcesso.getTmpChegada() && this.prioridade > outroProcesso.prioridade) {
+            return 1;
+        }
+        return 0;
+    }
+
 }

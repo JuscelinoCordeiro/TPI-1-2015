@@ -12,8 +12,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
+import model.Escalonador;
 import model.Processo;
-import view.DetalharProcesso;
+import view.Imprimir;
 
 /**
  *
@@ -23,8 +24,14 @@ public class Principal {
 
     public static void main(String[] args) {
         System.out.println("TESTE DE EXECUÇÃO");
-
-        List<Processo> filaDeProcessos = new LinkedList<Processo>();
+        //fila com os processos lidos do arquivo de entrada
+        List<Processo> filaDeProcessos = new LinkedList<>();
+        
+        //fila de eventos
+        List<Processo> filaDeEventos = new LinkedList<>();
+        
+        //fila fila do escalonador
+        List<Processo> filaDoEscalonador = new LinkedList<>();
 
         String arquivoEntrada = "/home/apolo/Dropbox/UFF-SI/TPI-1/Escalonador de Tarefas/src/arquivos/entrada.txt";
         String arquivoSaida = "/home/apolo/Dropbox/UFF-SI/TPI-1/Escalonador de Tarefas/src/arquivos/saida.txt";
@@ -35,6 +42,7 @@ public class Principal {
             //CONFIG / ABERTURA DO ARQUIVO DE ENTRADA
             FileReader arq1 = new FileReader(arquivoEntrada);
             BufferedReader lerArq = new BufferedReader(arq1);
+            
 
             //CONFIG / ABERTURA DO ARQUIVO DE SAIDA
             FileWriter arq2 = new FileWriter(arquivoSaida);
@@ -88,10 +96,11 @@ public class Principal {
                 linhaLida = lerArq.readLine();
             }
 
-            //teste de saida
+            Escalonador.escalonarFila(2, filaDeProcessos);
+           // teste de saida
             System.out.println("tamanho da fila = " + filaDeProcessos.size());
             for (int i = 0; i < filaDeProcessos.size(); i++) {
-                DetalharProcesso.detalhes(filaDeProcessos.get(i));
+//                Imprimir.processo(filaDeProcessos.get(i));
 
                 gravarArq.println("Dados do processo: " + (i + 1));
                 gravarArq.printf("ID TC TP P\n");
@@ -104,6 +113,12 @@ public class Principal {
 
             arq2.close();
             arq1.close();
+            
+//            Processo p3 = filaDeProcessos.remove(0);
+//            
+//            filaDeProcessos.remove(0);
+////            Imprimir.processo(p3);
+//            Imprimir.fila(filaDeProcessos);
 
         } catch (IOException e) {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
