@@ -19,7 +19,7 @@ public class Escalonador {
             case 1: //FIFO
 
                 break;
-            case 2: //prioridade
+            case 2: //ordem de chegada e prioridade
                 Collections.sort(lista);
                 break;
             default:
