@@ -8,6 +8,7 @@ package model;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -50,8 +51,8 @@ public class ArquivoSaida {
         return this.arquivo;
     }
     
-    public BufferedWriter criarBuffer (FileWriter file){
-        BufferedWriter buffer = new BufferedWriter(file);
-        return buffer;
+    public PrintWriter criarPrint (FileWriter file){
+        PrintWriter print = new PrintWriter(file);
+        return print;
     }
 }

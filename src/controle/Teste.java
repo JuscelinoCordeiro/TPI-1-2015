@@ -1,9 +1,11 @@
+package controle;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controle;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -26,10 +28,10 @@ import view.Imprimir;
  *
  * @author apolo
  */
-public class Principal_2 {
+public class Teste {
 
     public static void main(String[] args) throws IOException {
-        System.out.println("TESTE DE EXECUÇÃO");
+            System.out.println("ARQUIVO DE TESTE");
         //fila com os processos lidos do arquivo de entrada
         List<Processo> filaDeProcessos = new LinkedList<>();
 
@@ -49,7 +51,7 @@ public class Principal_2 {
 
         //criando os buffers de entrada e saida de dados
         BufferedReader lerArq = null;
-        BufferedWriter gravarArq = null;
+        PrintWriter gravarArq = null;
 
         //preparando arquivo de entrada
         if (arquivoEntrada.abrir(caminhoArquivoEntrada)) {
@@ -58,13 +60,15 @@ public class Principal_2 {
 
         //preparando arquivo de saida
         if (arquivoSaida.abrir(caminhoArquivoSaida)) {
-            gravarArq = arquivoSaida.criarBuffer(arquivoSaida.getArquivo());
+            gravarArq = arquivoSaida.criarPrint(arquivoSaida.getArquivo());
         }
 
         String linhaLida = lerArq.readLine(); // lê a primeira linha 
         // a variável "linha" recebe o valor "null" quando o processo de repetição atingir o final do arquivo texto 
 
         String informacao = ""; //string para armazenar a informação lida da linha
+        
+        //carrega fila de processos
         while (linhaLida != null) {
             Processo p2 = new Processo();
             char c = ' '; //armazena a informação lida a cada caractere da linha 
@@ -120,14 +124,29 @@ public class Principal_2 {
             Imprimir.processo(filaDeProcessos.get(i));
 
         }
+        
+        for (int i = 0; i < filaDeProcessos.size(); i++) {
+//                Imprimir.processo(filaDeProcessos.get(i));
+
+                gravarArq.println("Dados do processo: " + (i + 1));
+                gravarArq.printf("ID TC TP P\n");
+                gravarArq.print(filaDeProcessos.get(i).getId());
+                gravarArq.print(" " + filaDeProcessos.get(i).getTmpChegada());
+                gravarArq.print(" " + filaDeProcessos.get(i).getDuracao());
+                gravarArq.print(" " + filaDeProcessos.get(i).getPrioridade());
+                gravarArq.println("\n ================================\n");
+            }
 
         arquivoEntrada.fechar(arquivoEntrada.getArquivo());
+        if (!arquivoEntrada.verificarArquivoAberto()) {
+            System.out.println("Arquivo de entrada fechado com sucesso.");
+        }
+        
         arquivoSaida.fechar(arquivoSaida.getArquivo());
+        if (!arquivoSaida.verificarArquivoAberto()) {
+            System.out.println("Arquivo de saida fechado com sucesso.");
+        }
 
-//            Processo p3 = filaDeProcessos.remove(0);
-//            
-//            filaDeProcessos.remove(0);
-////            Imprimir.processo(p3);
-//            Imprimir.fila(filaDeProcessos);
+
     }
 }

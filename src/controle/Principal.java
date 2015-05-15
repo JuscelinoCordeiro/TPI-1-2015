@@ -103,7 +103,7 @@ public class Principal {
 //                System.out.println("id do processo" + e1.getProcesso().getId() + "\n");
             }
 
-            Escalonador.escalonarFila(2, filaDeProcessos);
+            Escalonador.escalonarFilaPorPrioridade(2, filaDeProcessos);
            // teste de saida
             System.out.println("tamanho da fila = " + filaDeProcessos.size());
             for (int i = 0; i < filaDeProcessos.size(); i++) {

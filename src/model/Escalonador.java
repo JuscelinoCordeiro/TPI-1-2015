@@ -10,11 +10,11 @@ import java.util.List;
 
 /**
  *
- * @author apolo
+ * @author juscelino
  */
 public class Escalonador {
 
-    public static void escalonarFila(int codPolitica, List<Processo> lista) {
+    public static void escalonarFilaPorPrioridade(int codPolitica, List<Processo> lista) {
         switch (codPolitica) {
             case 1: //FIFO
 
