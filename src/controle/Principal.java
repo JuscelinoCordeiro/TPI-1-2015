@@ -10,13 +10,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import model.Escalonador;
 import model.Evento;
 import model.Processo;
 import model.TipoEvento;
-import sun.awt.X11.XConstants;
 import view.Imprimir;
 
 /**
@@ -97,10 +97,10 @@ public class Principal {
                 }
                 filaDeProcessos.add(p2);
                 linhaLida = lerArq.readLine();
-                Evento e1 = new Evento(TipoEvento.chegada.getTipo(), p2, 0, TipoEvento.chegada.getPrioridade());
-                System.out.println("tipo de evento" + e1.getTipo());
-                System.out.println("tempo de evento" + e1.getTempo());
-                System.out.println("id do processo" + e1.getProcesso().getId() + "\n");
+//                Evento e1 = new Evento(TipoEvento.chegada.getTipo(), p2, 0, TipoEvento.chegada.getPrioridade());
+//                System.out.println("tipo de evento" + e1.getTipo());
+//                System.out.println("tempo de evento" + e1.getTempo());
+//                System.out.println("id do processo" + e1.getProcesso().getId() + "\n");
             }
 
             Escalonador.escalonarFila(2, filaDeProcessos);
@@ -121,12 +121,18 @@ public class Principal {
             arq2.close();
             arq1.close();
             
+            
 //            Processo p3 = filaDeProcessos.remove(0);
 //            
 //            filaDeProcessos.remove(0);
 ////            Imprimir.processo(p3);
 //            Imprimir.fila(filaDeProcessos);
-
+for (Iterator<Processo> it = filaDeProcessos.iterator(); it.hasNext();) {
+                Processo p = it.next();
+                System.out.println(p.getId());
+            }
+            System.out.println("tamanho da fila" + filaDeProcessos.size());
+            
         } catch (IOException e) {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
                     e.getMessage());
