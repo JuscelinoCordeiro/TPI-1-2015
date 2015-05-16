@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author apolo
+ * @author juscelino
  */
 public class Processo implements Comparable<Processo> {
 

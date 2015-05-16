@@ -14,8 +14,9 @@ import model.TipoEvento;
  * @author apolo
  */
 public class BuscaEvento {
-    public static void criaEvento(int codEvento, Processo processo, int tempo){
-        Evento evento;
+
+    public static Evento criaEvento(int codEvento, Processo processo, int tempo) {
+        Evento evento = null;
         switch (codEvento) {
             case 1:
                 evento = new Evento(TipoEvento.termino.getTipo(), processo, tempo, TipoEvento.termino.getPrioridade());
@@ -33,6 +34,11 @@ public class BuscaEvento {
 //                throw new AssertionError();
                 System.out.println("Não foi possivel criar o evento.");
         }
+        return evento;
     }
     
+    public static void chega(Processo p, int t){
+        
+    }
+
 }
