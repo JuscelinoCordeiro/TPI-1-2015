@@ -10,7 +10,7 @@ ID TC TP P
 
 Dados do processo: 3
 ID TC TP P
-3 1 2 1
+3 1 23 1234
  ================================
 
 Dados do processo: 4
@@ -20,7 +20,7 @@ ID TC TP P
 
 Dados do processo: 5
 ID TC TP P
-5 3 150 20
+5 3 9 20
  ================================
 
 Dados do processo: 6
@@ -45,6 +45,6 @@ ID TC TP P
 
 Dados do processo: 10
 ID TC TP P
-11 35 10 4
+11 35 10 3
  ================================
 

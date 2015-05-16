@@ -5,8 +5,6 @@ package controle;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -31,7 +29,9 @@ import view.Imprimir;
 public class Teste {
 
     public static void main(String[] args) throws IOException {
-            System.out.println("ARQUIVO DE TESTE");
+        System.out.println("ARQUIVO DE TESTE");
+
+        int cont;
         //fila com os processos lidos do arquivo de entrada
         List<Processo> filaDeProcessos = new LinkedList<>();
 
@@ -56,19 +56,24 @@ public class Teste {
         //preparando arquivo de entrada
         if (arquivoEntrada.abrir(caminhoArquivoEntrada)) {
             lerArq = arquivoEntrada.criarBuffer(arquivoEntrada.getArquivo());
+        } else {
+            System.out.println("Erro no arquivo de entrada.");
         }
 
         //preparando arquivo de saida
         if (arquivoSaida.abrir(caminhoArquivoSaida)) {
             gravarArq = arquivoSaida.criarPrint(arquivoSaida.getArquivo());
+        } else {
+            System.out.println("Erro no arquivo de saida.");
         }
 
         String linhaLida = lerArq.readLine(); // lê a primeira linha 
         // a variável "linha" recebe o valor "null" quando o processo de repetição atingir o final do arquivo texto 
 
         String informacao = ""; //string para armazenar a informação lida da linha
-        
+
         //carrega fila de processos
+        //loop principal para leitura do arquivo de entrada
         while (linhaLida != null) {
             Processo p2 = new Processo();
             char c = ' '; //armazena a informação lida a cada caractere da linha 
@@ -111,42 +116,38 @@ public class Teste {
             }
             filaDeProcessos.add(p2);
             linhaLida = lerArq.readLine();
-//                Evento e1 = new Evento(TipoEvento.chegada.getTipo(), p2, 0, TipoEvento.chegada.getPrioridade());
-//                System.out.println("tipo de evento" + e1.getTipo());
-//                System.out.println("tempo de evento" + e1.getTempo());
-//                System.out.println("id do processo" + e1.getProcesso().getId() + "\n");
-        }
-
-//            Escalonador.escalonarFila(2, filaDeProcessos);
-        // teste de saida
-        System.out.println("tamanho da fila = " + filaDeProcessos.size());
-        for (int i = 0; i < filaDeProcessos.size(); i++) {
-            Imprimir.processo(filaDeProcessos.get(i));
-
         }
         
-        for (int i = 0; i < filaDeProcessos.size(); i++) {
-//                Imprimir.processo(filaDeProcessos.get(i));
+        
+        
+        
 
-                gravarArq.println("Dados do processo: " + (i + 1));
-                gravarArq.printf("ID TC TP P\n");
-                gravarArq.print(filaDeProcessos.get(i).getId());
-                gravarArq.print(" " + filaDeProcessos.get(i).getTmpChegada());
-                gravarArq.print(" " + filaDeProcessos.get(i).getDuracao());
-                gravarArq.print(" " + filaDeProcessos.get(i).getPrioridade());
-                gravarArq.println("\n ================================\n");
-            }
+        // teste de saida
+//        System.out.println("tamanho da fila = " + filaDeProcessos.size());
+//        for (int i = 0; i < filaDeProcessos.size(); i++) {
+//            Imprimir.processo(filaDeProcessos.get(i));
+//        }
+        
+        //gravar no arquivo
+//        for (int i = 0; i < filaDeProcessos.size(); i++) {
+//            gravarArq.println("Dados do processo: " + (i + 1));
+//            gravarArq.printf("ID TC TP P\n");
+//            gravarArq.print(filaDeProcessos.get(i).getId());
+//            gravarArq.print(" " + filaDeProcessos.get(i).getTmpChegada());
+//            gravarArq.print(" " + filaDeProcessos.get(i).getDuracao());
+//            gravarArq.print(" " + filaDeProcessos.get(i).getPrioridade());
+//            gravarArq.println("\n ================================\n");
+//        }
 
         arquivoEntrada.fechar(arquivoEntrada.getArquivo());
         if (!arquivoEntrada.verificarArquivoAberto()) {
             System.out.println("Arquivo de entrada fechado com sucesso.");
         }
-        
+
         arquivoSaida.fechar(arquivoSaida.getArquivo());
         if (!arquivoSaida.verificarArquivoAberto()) {
             System.out.println("Arquivo de saida fechado com sucesso.");
         }
-
 
     }
 }
