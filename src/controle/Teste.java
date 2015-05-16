@@ -33,6 +33,7 @@ public class Teste {
 
         //variavel para controlar o tempo
         int contador = 0;
+        int cont;
         //fila com os processos lidos do arquivo de entrada
         List<Processo> filaDeProcessos = new LinkedList<>();
 

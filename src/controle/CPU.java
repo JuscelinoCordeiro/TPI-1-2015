@@ -38,7 +38,7 @@ public class CPU {
     public boolean liberarCPU() {
         processo = null;
         vazia = true;
-        return false;
+        return vazia;
     }
 
 }
