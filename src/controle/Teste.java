@@ -31,12 +31,13 @@ public class Teste {
     public static void main(String[] args) throws IOException {
         System.out.println("ARQUIVO DE TESTE");
 
-        int cont;
+        //variavel para controlar o tempo
+        int contador = 0;
         //fila com os processos lidos do arquivo de entrada
         List<Processo> filaDeProcessos = new LinkedList<>();
 
         //fila de eventos
-        List<Processo> filaDeEventos = new LinkedList<>();
+        List<Evento> filaDeEventos = new LinkedList<>();
 
         //fila fila do escalonador
         List<Processo> filaDoEscalonador = new LinkedList<>();
@@ -117,17 +118,22 @@ public class Teste {
             filaDeProcessos.add(p2);
             linhaLida = lerArq.readLine();
         }
-        
-        
-        
-        
+
+        while (!filaDeProcessos.isEmpty()) {
+            for(int i = 0; i <= filaDeProcessos.size(); i++){
+                if (filaDeProcessos.get(i).getTmpChegada() == contador) {
+                    
+                }
+            }
+            
+            contador++;
+        }
 
         // teste de saida
 //        System.out.println("tamanho da fila = " + filaDeProcessos.size());
 //        for (int i = 0; i < filaDeProcessos.size(); i++) {
 //            Imprimir.processo(filaDeProcessos.get(i));
 //        }
-        
         //gravar no arquivo
 //        for (int i = 0; i < filaDeProcessos.size(); i++) {
 //            gravarArq.println("Dados do processo: " + (i + 1));
@@ -138,7 +144,6 @@ public class Teste {
 //            gravarArq.print(" " + filaDeProcessos.get(i).getPrioridade());
 //            gravarArq.println("\n ================================\n");
 //        }
-
         arquivoEntrada.fechar(arquivoEntrada.getArquivo());
         if (!arquivoEntrada.verificarArquivoAberto()) {
             System.out.println("Arquivo de entrada fechado com sucesso.");

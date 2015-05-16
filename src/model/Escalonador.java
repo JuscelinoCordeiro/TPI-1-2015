@@ -13,7 +13,7 @@ import java.util.List;
  * @author juscelino
  */
 public class Escalonador {
-
+                
     public static void escalonarFilaPorPrioridade(int codPolitica, List<Processo> lista) {
         switch (codPolitica) {
             case 1: //FIFO

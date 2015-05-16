@@ -15,21 +15,29 @@ import model.Processo;
 public class CPU {
 
     private Processo processo;
+    private boolean vazia;
 
     public CPU() {
         this.processo = null;
+        this.vazia = true;
     }
 
     public Processo getProcesso() {
         return processo;
     }
 
+    public boolean isVazia() {
+        return vazia;
+    }
+
     public void alocarCPU(Processo processo) {
         this.processo = processo;
+        this.vazia = false;
     }
 
     public boolean liberarCPU() {
         processo = null;
+        vazia = true;
         return false;
     }
 
