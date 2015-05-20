@@ -9,17 +9,38 @@ import java.util.LinkedList;
 import model.Evento;
 import model.Processo;
 import model.TipoEvento;
-import controle.CPU;
+import java.util.List;
+import model.Escalonador;
+import model.Estatistica;
 
 /**
  *
  * @author apolo
  */
 public class BuscaEvento {
-    private final CPU cpu;
 
-    public BuscaEvento(CPU cpu) {
-        this.cpu = cpu;
+    private final CPU cpu;
+    private int contador;
+    //fila de eventos
+    List<Evento> filaDeEventos = new LinkedList<>();
+    private Escalonador escalonador;
+
+    public BuscaEvento() {
+        this.cpu = new CPU();
+        this.contador = 0;
+        this.escalonador = new Escalonador();
+    }
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void incContador() {
+        this.contador++;
+    }
+
+    public Escalonador getEscalonador() {
+        return escalonador;
     }
     
     
@@ -64,19 +85,40 @@ public class BuscaEvento {
         boolean terminado;
         this.cpu.liberarCPU();
     }
-    
+
     /*
-    1-Se cpu ocupada por processo P'
-        - tira P' da CPU
-        - remove da linha de eventos TERM_EVT(P')
-        - coloca em P' quanto tempo falta para ele terminar
-        - coloca P' na fila do escalonador
-    2-poe P na cpu
-    3-cria evento TERM_EVT(P, T + tempo que resta para p terminar)
-    */
-    public void executa(Processo p, int tempo){
+     1-Se cpu ocupada por processo P'
+     - tira P' da CPU
+     - remove da linha de eventos TERM_EVT(P')
+     - coloca em P' quanto tempo falta para ele terminar
+     - coloca P' na fila do escalonador
+     2-poe P na cpu
+     3-cria evento TERM_EVT(P, T + tempo que resta para p terminar)
+     */
+    public void executa(Processo p, int tempo) {
         if (!this.cpu.isVazia()) {
-            
+            Processo p2 = this.cpu.liberarCPU();
+            boolean achouEvento = false;
+            int tempoDeExecucao = 0;
+
+            for (int i = 0; i < filaDeEventos.size(); i++) {
+                if (filaDeEventos.get(i).getProcesso().equals(p2) && filaDeEventos.get(i).getTipo().equals(TipoEvento.termino.getTipo())) {
+                    filaDeEventos.remove(i);
+                    achouEvento = true;
+                    tempoDeExecucao = Estatistica.calculaTempoExecucaoProcesso(p2);
+
+                    if (!(filaDeEventos.get(i).getProcesso().getDuracao() == tempoDeExecucao)) {
+                        p2.setDuracao(p2.getDuracao() - tempoDeExecucao);
+                        this.escalonador.getFilaDoEscalonador().add(p2);
+                    }
+                }
+                if (achouEvento) {
+                    break;
+                }
+            }
         }
+        Evento ex = this.criaEvento(1, p, (p.getDuracao()+this.getContador()));
+        this.filaDeEventos.add(ex);        
     }
+
 }

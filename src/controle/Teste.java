@@ -24,7 +24,7 @@ import view.Imprimir;
 
 /**
  *
- * @author apolo
+ * @author juscelino
  */
 public class Teste {
 
@@ -34,11 +34,10 @@ public class Teste {
         //variavel para controlar o tempo
         int contador = 0;
         int cont;
+        boolean estaVazia = false;
+
         //fila com os processos lidos do arquivo de entrada
         List<Processo> filaDeProcessos = new LinkedList<>();
-
-        //fila de eventos
-        List<Evento> filaDeEventos = new LinkedList<>();
 
         //fila fila do escalonador
         List<Processo> filaDoEscalonador = new LinkedList<>();
@@ -78,7 +77,7 @@ public class Teste {
         //loop principal para leitura do arquivo de entrada
         while (linhaLida != null) {
             Processo p2 = new Processo();
-            char c = ' '; //armazena a informação lida a cada caractere da linha 
+            char c = ' '; //armazena a informação lida a cada caractere da linha
             int i = 0; //indice para percorrer a linha caractere por caractere
             int j = 0; //indice de atributo do processo para uso no switch
 
@@ -120,14 +119,26 @@ public class Teste {
             linhaLida = lerArq.readLine();
         }
 
-        while (!filaDeProcessos.isEmpty()) {
-            for(int i = 0; i <= filaDeProcessos.size(); i++){
-                if (filaDeProcessos.get(i).getTmpChegada() == contador) {
-                    
+        // =====================================================================
+        //  INICIO DO ESCALONAMENTO
+        // =====================================================================
+        BuscaEvento buscaEvento = new BuscaEvento();
+
+        while (!estaVazia) {
+            for (Processo p : filaDeProcessos) {
+                if (p.getTmpChegada() == contador) {
+                    buscaEvento.getEscalonador().getFilaDoEscalonador().add(p);
                 }
             }
             
+            System.out.println("contador = " + contador);
+            System.out.println("tamanho da fila de processos = " + filaDeProcessos.size());
+            System.out.println("tamanho da fila do escalonador = " + buscaEvento.getEscalonador().getFilaDoEscalonador().size());
             contador++;
+            
+            if (filaDeProcessos.isEmpty() || contador == 36) {
+                estaVazia = true;
+            }
         }
 
         // teste de saida

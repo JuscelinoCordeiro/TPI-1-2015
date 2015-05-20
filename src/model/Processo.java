@@ -56,6 +56,16 @@ public class Processo implements Comparable<Processo> {
         this.prioridade = prioridade;
     }
 
+    public List<Interrupcao> getInterrupcoes() {
+        return interrupcoes;
+    }
+
+    public void setInterrupcoes(List<Interrupcao> interrupcoes) {
+        this.interrupcoes = interrupcoes;
+    }
+    
+    
+
     @Override
     public int compareTo(Processo outroProcesso) {
         //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -67,6 +77,8 @@ public class Processo implements Comparable<Processo> {
         }
         return 0;
     }
+    
+    
     
     
 

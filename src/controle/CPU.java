@@ -35,10 +35,11 @@ public class CPU {
         this.vazia = false;
     }
 
-    public boolean liberarCPU() {
-        processo = null;
+    public Processo liberarCPU() {
+        Processo p = this.processo;
+        this.processo = null;
         vazia = true;
-        return vazia;
+        return p;
     }
 
 }

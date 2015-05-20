@@ -6,6 +6,7 @@
 package model;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -13,7 +14,17 @@ import java.util.List;
  * @author juscelino
  */
 public class Escalonador {
-                
+
+    private List<Processo> filaDoEscalonador = new LinkedList<>();
+
+    public List<Processo> getFilaDoEscalonador() {
+        return filaDoEscalonador;
+    }
+
+    public void setFilaDoEscalonador(List<Processo> filaDoEscalonador) {
+        this.filaDoEscalonador = filaDoEscalonador;
+    }
+
     public static void escalonarFilaPorPrioridade(int codPolitica, List<Processo> lista) {
         switch (codPolitica) {
             case 1: //FIFO
