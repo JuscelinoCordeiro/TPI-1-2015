@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.util.Arrays;
 import java.util.List;
 import model.Processo;
 
@@ -22,9 +23,9 @@ public class Imprimir {
         System.out.println("Prioridade: " + p.getPrioridade());
     }
 
-    public static void fila(List fila) {
+    public static void fila(List<Processo> fila) {
         for (int i = 0; i < fila.size(); i++) {
-            processo((Processo) fila.get(i));
+             System.out.println("processo " + i+ " id = "+fila.get(i).getId());
         }
     }
 }

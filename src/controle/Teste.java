@@ -43,8 +43,8 @@ public class Teste {
         List<Processo> filaDoEscalonador = new LinkedList<>();
 
         //caminho dos arquivos
-        String caminhoArquivoEntrada = "/home/jfilho/Dropbox/UFF-SI/TPI-1/Escalonador de Tarefas/src/arquivos/entrada.txt";
-        String caminhoArquivoSaida = "/home/jfilho/Dropbox/UFF-SI/TPI-1/Escalonador de Tarefas/src/arquivos/saida.txt";
+        String caminhoArquivoEntrada = "/home/juscelino/Documentos/TPI-1-2015/src/arquivos/entrada.txt";
+        String caminhoArquivoSaida = "/home/juscelino/Documentos/TPI-1-2015/src/arquivos/saida.txt";
 
         //inicializando os arquivos
         ArquivoEntrada arquivoEntrada = new ArquivoEntrada();
@@ -105,8 +105,8 @@ public class Teste {
                                 p2.setPrioridade(Integer.parseInt(informacao));
                                 break;
                             default:
-//                                    throw new AssertionError();
-                                System.out.println("Deu erro no switch");
+                                    throw new AssertionError();
+//                                System.out.println("Deu erro no switch");
                         }
                         informacao = "";
                     } else {
@@ -125,18 +125,34 @@ public class Teste {
         BuscaEvento buscaEvento = new BuscaEvento();
 
         while (!estaVazia) {
-            for (Processo p : filaDeProcessos) {
-                if (p.getTmpChegada() == contador) {
-                    buscaEvento.getEscalonador().getFilaDoEscalonador().add(p);
+//            for (Processo p : filaDeProcessos) {
+//                if (p.getTmpChegada() == contador) {
+//                    buscaEvento.getEscalonador().getFilaDoEscalonador().add(p);
+//                }
+//            }
+            for (int i = 0; i < filaDeProcessos.size(); i++) {
+                if (filaDeProcessos.get(i).getTmpChegada() == contador) {
+                    buscaEvento.getEscalonador().getFilaDoEscalonador().add(filaDeProcessos.get(i));
                 }
             }
-            
+
+            for (int i = 0; i < filaDeProcessos.size(); i++) {
+
+                if (filaDeProcessos.get(i).getTmpChegada() == contador) {
+                    filaDeProcessos.remove(i);
+                } else if (filaDeProcessos.get(i).getTmpChegada() > contador) {
+                    break;
+                }
+            }
+
             System.out.println("contador = " + contador);
             System.out.println("tamanho da fila de processos = " + filaDeProcessos.size());
             System.out.println("tamanho da fila do escalonador = " + buscaEvento.getEscalonador().getFilaDoEscalonador().size());
+            System.out.println("Arquivos na fila do escalonador");
+            Imprimir.fila(buscaEvento.getEscalonador().getFilaDoEscalonador());
             contador++;
-            
-            if (filaDeProcessos.isEmpty() || contador == 36) {
+
+            if (filaDeProcessos.isEmpty() || contador == 40) {
                 estaVazia = true;
             }
         }
